@@ -1,9 +1,18 @@
-
-'use client';
-
+import * as React from 'react';
 import { Link } from 'react-router-dom';
-export default function ServicesSection() {
-  const services = [
+import ImageWithFallback from './ImageWithFallback';
+
+interface Service {
+  id: number;
+  name: string;
+  duration: string;
+  price: string;
+  image: string;
+  description: string;
+}
+
+const ServicesSection: React.FC = () => {
+  const services: Service[] = [
     {
       id: 1,
       name: "Soin Visage Personnalisé",
@@ -20,31 +29,8 @@ export default function ServicesSection() {
       image: "https://readdy.ai/api/search-image?query=Relaxing%20spa%20massage%20therapy%20session%2C%20peaceful%20treatment%20room%2C%20natural%20oils%20and%20candles%2C%20professional%20wellness%20service%2C%20calming%20atmosphere%2C%20luxury%20spa%20interior%2C%20soft%20lighting&width=500&height=400&seq=service2&orientation=landscape",
       description: "Détente profonde et régénération"
     },
+    
     {
-      id: 3,
-      name: "Conseil Beauté",
-      duration: "30 min",
-      price: "22 500 FCFA",
-      image: "https://readdy.ai/api/search-image?query=Beauty%20consultation%20session%20with%20professional%20makeup%20artist%2C%20cosmetic%20products%20display%2C%20personalized%20beauty%20advice%2C%20elegant%20salon%20interior%2C%20natural%20makeup%20demonstration%2C%20professional%20beauty%20service&width=500&height=400&seq=service3&orientation=landscape",
-      description: "Conseils personnalisés pour votre routine beauté"
-    },
-     {
-      id: 3,
-      name: "Conseil Beauté",
-      duration: "30 min",
-      price: "22 500 FCFA",
-      image: "https://readdy.ai/api/search-image?query=Beauty%20consultation%20session%20with%20professional%20makeup%20artist%2C%20cosmetic%20products%20display%2C%20personalized%20beauty%20advice%2C%20elegant%20salon%20interior%2C%20natural%20makeup%20demonstration%2C%20professional%20beauty%20service&width=500&height=400&seq=service3&orientation=landscape",
-      description: "Conseils personnalisés pour votre routine beauté"
-    },
-     {
-      id: 3,
-      name: "Conseil Beauté",
-      duration: "30 min",
-      price: "22 500 FCFA",
-      image: "https://readdy.ai/api/search-image?query=Beauty%20consultation%20session%20with%20professional%20makeup%20artist%2C%20cosmetic%20products%20display%2C%20personalized%20beauty%20advice%2C%20elegant%20salon%20interior%2C%20natural%20makeup%20demonstration%2C%20professional%20beauty%20service&width=500&height=400&seq=service3&orientation=landscape",
-      description: "Conseils personnalisés pour votre routine beauté"
-    },
-     {
       id: 3,
       name: "Conseil Beauté",
       duration: "30 min",
@@ -70,8 +56,8 @@ export default function ServicesSection() {
           {services.map((service) => (
             <div key={service.id} className="bg-gray-50 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
               <div className="h-64">
-                <img 
-                  src={service.image} 
+                <ImageWithFallback
+                  src={service.image}
                   alt={service.name}
                   className="w-full h-full object-cover object-top"
                 />
@@ -101,4 +87,7 @@ export default function ServicesSection() {
       </div>
     </section>
   );
-}
+};
+
+export default ServicesSection;
+

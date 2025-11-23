@@ -1,10 +1,17 @@
-
-'use client';
-
+import * as React from 'react';
 import { Link } from 'react-router-dom';
+import ImageWithFallback from './ImageWithFallback';
 
-export default function FeaturedProducts() {
-  const products = [
+interface Product {
+  id: number;
+  name: string;
+  price: string;
+  image: string;
+  description: string;
+}
+
+const FeaturedProducts: React.FC = () => {
+  const products: Product[] = [
     {
       id: 1,
       name: "Sérum Vitamine C Éclat",
@@ -51,8 +58,8 @@ export default function FeaturedProducts() {
           {products.map((product) => (
             <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
               <div className="aspect-square">
-                <img 
-                  src={product.image} 
+                <ImageWithFallback
+                  src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover object-top"
                 />
@@ -79,4 +86,7 @@ export default function FeaturedProducts() {
       </div>
     </section>
   );
-}
+};
+
+export default FeaturedProducts;
+

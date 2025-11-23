@@ -1,32 +1,15 @@
-
-'use client';
-
+import * as React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from './Logo';
 
-export default function Footer() {
+const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-800 text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-amber-100 to-orange-50 rounded-full flex items-center justify-center shadow-md">
-                <div className="text-center">
-                  <div className="w-6 h-6 flex items-center justify-center mx-auto mb-1">
-                    <div className="flex flex-col items-center">
-                      <div className="w-2 h-2.5 bg-amber-800 rounded-full mb-0.5"></div>
-                      <div className="flex space-x-0.5">
-                        <div className="w-1.5 h-2 bg-amber-800 rounded-full transform rotate-12"></div>
-                        <div className="w-1.5 h-2 bg-amber-800 rounded-full transform -rotate-12"></div>
-                        <div className="w-1.5 h-2 bg-amber-800 rounded-full transform rotate-12"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h3 className="text-xl font-bold text-emerald-400" style={{ fontFamily: 'Pacifico, serif' }}>
-                NaturaDivineBeauté
-              </h3>
+            <div className="flex items-center mb-4">
+              <Logo size={80} className="shadow-md" />
             </div>
             <p className="text-gray-300 mb-4">
               Votre destination beauté pour des produits naturels et des services personnalisés de qualité premium.
@@ -123,4 +106,7 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
+

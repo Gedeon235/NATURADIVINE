@@ -1,17 +1,19 @@
 {
-  "name": "next-app",
+  "name": "naturadivinebeaute",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development next dev -H 0.0.0.0 -p 3000",
-    "build": "next build",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.19.3",
-    "next": "15.3.2",
     "react": "^19.1.0",
     "react-dom": "^19.0.0",
+    "react-router-dom": "^6.28.0",
     "recharts": "^3.0.2"
   },
   "devDependencies": {
@@ -19,10 +21,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.21",
-    "cross-env": "^7.0.3",
     "postcss": "^8.5.5",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite": "^5.4.0"
   }
 }

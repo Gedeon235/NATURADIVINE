@@ -1,9 +1,7 @@
-
-'use client';
-
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function HeroSection() {
+const HeroSection: React.FC = () => {
   return (
     <section 
       className="relative h-screen flex items-center justify-center bg-cover bg-center"
@@ -31,4 +29,7 @@ export default function HeroSection() {
       </div>
     </section>
   );
-}
+};
+
+export default HeroSection;
+
