@@ -1,0 +1,280 @@
+// src/server.ts - VERSION COMPLÈTE AVEC TOUTES LES ROUTES
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+app.use(cors());
+app.use(express.json());
+
+// ==================== CHARGEMENT DES ROUTES ====================
+
+// Route produits basique (pour tester)
+app.get('/api/products', (req: express.Request, res: express.Response) => {
+  res.json({
+    success: true,
+    message: 'Liste des produits',
+    data: [
+      { id: 1, name: 'Produit 1', price: 29.99 },
+      { id: 2, name: 'Produit 2', price: 39.99 }
+    ]
+  });
+});
+
+app.get('/api/products/:id', (req: express.Request, res: express.Response) => {
+  res.json({
+    success: true,
+    message: `Détail produit ${req.params.id}`,
+    data: { id: req.params.id, name: 'Produit Test', price: 29.99 }
+  });
+});
+
+// Route services basique (pour tester)
+app.get('/api/services', (req: express.Request, res: express.Response) => {
+  res.json({
+    success: true,
+    message: 'Liste des services',
+    data: [
+      { id: 1, name: 'Soin du visage', price: 50, duration: 60 },
+      { id: 2, name: 'Massage relaxant', price: 70, duration: 90 }
+    ]
+  });
+});
+
+app.get('/api/services/:id', (req: express.Request, res: express.Response) => {
+  res.json({
+    success: true,
+    message: `Détail service ${req.params.id}`,
+    data: { id: req.params.id, name: 'Soin du visage', price: 50 }
+  });
+});
+
+app.get('/api/services/:id/beauticians', (req: express.Request, res: express.Response) => {
+  res.json({
+    success: true,
+    message: `Esthéticiennes pour service ${req.params.id}`,
+    data: [
+      { id: 1, name: 'Marie Dupont', specialty: 'Soins visage' },
+      { id: 2, name: 'Sophie Martin', specialty: 'Massages' }
+    ]
+  });
+});
+
+// ==================== CHARGEMENT DES ROUTES ====================
+
+// Authentification
+try {
+  const authRoutes = require('./routes/auth');
+  app.use('/api/auth', authRoutes);
+  console.log('✅ Route /api/auth chargée avec succès');
+} catch (error: any) {
+  console.log('❌ Erreur chargement route /api/auth:', error.message);
+}
+
+// ==================== CHARGEMENT DES ROUTES ====================
+
+// ==================== CHARGEMENT DES ROUTES ====================
+
+// Produits
+try {
+  const productRoutes = require('./routes/products'); // Chemin corrigé
+  app.use('/api/products', productRoutes);
+  console.log('✅ Route /api/products chargée avec succès');
+} catch (error: any) {
+  console.log('❌ Erreur chargement route /api/products:', error.message);
+}
+
+// Services
+try {
+  const serviceRoutes = require('./routes/services'); // Chemin corrigé
+  app.use('/api/services', serviceRoutes);
+  console.log('✅ Route /api/services chargée avec succès');
+} catch (error: any) {
+  console.log('❌ Erreur chargement route /api/services:', error.message);
+}
+
+// Rendez-vous
+try {
+  const appointmentRoutes = require('./routes/appointments');
+  app.use('/api/appointments', appointmentRoutes);
+  console.log('✅ Route /api/appointments chargée avec succès');
+} catch (error: any) {
+  console.log('❌ Erreur chargement route /api/appointments:', error.message);
+}
+
+// Panier
+try {
+  const cartRoutes = require('./routes/cart');
+  app.use('/api/cart', cartRoutes);
+  console.log('✅ Route /api/cart chargée avec succès');
+} catch (error: any) {
+  console.log('❌ Erreur chargement route /api/cart:', error.message);
+}
+
+// Commandes
+try {
+  const orderRoutes = require('./routes/orders');
+  app.use('/api/orders', orderRoutes);
+  console.log('✅ Route /api/orders chargée avec succès');
+} catch (error: any) {
+  console.log('❌ Erreur chargement route /api/orders:', error.message);
+}
+
+// Avis
+try {
+  const reviewRoutes = require('./routes/reviews');
+  app.use('/api/reviews', reviewRoutes);
+  console.log('✅ Route /api/reviews chargée avec succès');
+} catch (error: any) {
+  console.log('❌ Erreur chargement route /api/reviews:', error.message);
+}
+
+// Newsletter
+try {
+  const newsletterRoutes = require('./routes/newsletter');
+  app.use('/api/newsletter', newsletterRoutes);
+  console.log('✅ Route /api/newsletter chargée avec succès');
+} catch (error: any) {
+  console.log('❌ Erreur chargement route /api/newsletter:', error.message);
+}
+
+// Blog
+try {
+  const blogRoutes = require('./routes/blog');
+  app.use('/api/blog', blogRoutes);
+  console.log('✅ Route /api/blog chargée avec succès');
+} catch (error: any) {
+  console.log('❌ Erreur chargement route /api/blog:', error.message);
+}
+
+// Administration
+try {
+  const adminRoutes = require('./routes/admin');
+  app.use('/api/admin', adminRoutes);
+  console.log('✅ Route /api/admin chargée avec succès');
+} catch (error: any) {
+  console.log('❌ Erreur chargement route /api/admin:', error.message);
+}
+
+// Catégories
+try {
+  const categoryRoutes = require('./routes/categories');
+  app.use('/api/categories', categoryRoutes);
+  console.log('✅ Route /api/categories chargée avec succès');
+} catch (error: any) {
+  console.log('❌ Erreur chargement route /api/categories:', error.message);
+}
+
+// Configuration du site
+try {
+  const siteConfigRoutes = require('./routes/siteConfigRoutes');
+  app.use('/api/config', siteConfigRoutes);
+  console.log('✅ Route /api/config chargée avec succès');
+} catch (error: any) {
+  console.log('❌ Erreur chargement route /api/config:', error.message);
+}
+
+// ==================== MIDDLEWARES GLOBAUX ====================
+
+// Maintenance mode (à ajouter si nécessaire)
+// import { checkMaintenanceMode } from './middleware/maintenance';
+// app.use(checkMaintenanceMode);
+
+// Gestion des erreurs
+// import errorHandler from './middleware/errorHandler';
+// app.use(errorHandler);
+
+// ==================== DÉMARRAGE DU SERVEUR ====================
+
+app.listen(PORT, () => {
+  console.log('='.repeat(60));
+  console.log('🚀 SERVEUR NATURA DIVINE BEAUTÉ - DÉMARRÉ AVEC SUCCÈS!');
+  console.log(`📍 Port: ${PORT}`);
+  console.log(`🌐 URL: http://localhost:${PORT}`);
+  console.log(`📱 Environnement: ${process.env.NODE_ENV || 'development'}`);
+  console.log('='.repeat(60));
+  console.log('\n📋 ENDPOINTS DISPONIBLES:');
+  console.log('\n👤 AUTHENTIFICATION:');
+  console.log('   POST /api/auth/register         - Inscription');
+  console.log('   POST /api/auth/login            - Connexion');
+  console.log('   GET  /api/auth/me               - Profil utilisateur');
+  console.log('   PUT  /api/auth/profile          - Mise à jour profil');
+  console.log('   PUT  /api/auth/change-password  - Changer mot de passe');
+  console.log('   POST /api/auth/forgot-password  - Mot de passe oublié');
+  console.log('   POST /api/auth/reset-password/:token - Réinitialisation');
+  
+  console.log('\n🛍️  PRODUITS:');
+  console.log('   GET  /api/products              - Liste des produits');
+  console.log('   GET  /api/products/:id          - Détail produit');
+  console.log('   POST /api/products              - Créer produit (admin)');
+  console.log('   PUT  /api/products/:id          - Modifier produit (admin)');
+  console.log('   DELETE /api/products/:id        - Supprimer produit (admin)');
+  
+  console.log('\n💆 SERVICES:');
+  console.log('   GET  /api/services              - Liste des services');
+  console.log('   GET  /api/services/:id          - Détail service');
+  console.log('   POST /api/services              - Créer service (admin)');
+  
+  console.log('\n📅 RENDEZ-VOUS:');
+  console.log('   GET  /api/appointments          - Mes rendez-vous');
+  console.log('   POST /api/appointments          - Prendre rendez-vous');
+  console.log('   GET  /api/appointments/:id      - Détail rendez-vous');
+  console.log('   PUT  /api/appointments/:id/cancel - Annuler rendez-vous');
+  console.log('   GET  /api/appointments/availability - Créneaux disponibles');
+  
+  console.log('\n🛒 PANIER:');
+  console.log('   GET  /api/cart                  - Voir le panier');
+  console.log('   POST /api/cart/items            - Ajouter au panier');
+  console.log('   PUT  /api/cart/items/:itemId    - Modifier quantité');
+  console.log('   DELETE /api/cart/items/:itemId  - Retirer du panier');
+  console.log('   DELETE /api/cart                - Vider le panier');
+  
+  console.log('\n📦 COMMANDES:');
+  console.log('   GET  /api/orders                - Mes commandes');
+  console.log('   POST /api/orders                - Passer commande');
+  console.log('   GET  /api/orders/:id            - Détail commande');
+  
+  console.log('\n⭐ AVIS:');
+  console.log('   GET  /api/reviews               - Avis des produits');
+  console.log('   POST /api/reviews               - Donner un avis');
+  
+  console.log('\n📧 NEWSLETTER:');
+  console.log('   POST /api/newsletter/subscribe  - S\'abonner');
+  
+  console.log('\n📝 BLOG:');
+  console.log('   GET  /api/blog                  - Articles du blog');
+  console.log('   GET  /api/blog/:id              - Détail article');
+  
+  console.log('\n⚙️  CONFIGURATION:');
+  console.log('   GET  /api/config                - Configuration du site');
+  
+  console.log('\n🔧 UTILITAIRES:');
+  console.log('   GET  /                          - Page d\'accueil API');
+  console.log('   GET  /health                    - Santé du serveur');
+  
+  console.log('\n🛑 Pour arrêter le serveur: Ctrl + C');
+  console.log('='.repeat(60));
+});
+
+// Gestion des routes non trouvées
+app.use('*', (req: express.Request, res: express.Response) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route non trouvée',
+    path: req.originalUrl
+  });
+});
+
+// Gestion des erreurs globales
+app.use((error: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  console.error('Erreur serveur:', error);
+  res.status(500).json({
+    success: false,
+    message: 'Erreur interne du serveur',
+    error: process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'
+  });
+});
