@@ -83,10 +83,10 @@ function AdminAuthProvider({ children }: { children: React.ReactNode }) {
 }
 
 // --------------------------- API ---------------------------
-const API_BASE = (import.meta.env.VITE_API_URL as string) || 'http://localhost:5000';
 
-const api = axios.create({ baseURL: API_BASE, timeout: 12000 });
-api.interceptors.request.use((cfg) => {
+// Par :
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "https://naturadivine-2.onrender.com";
+const api = axios.create({ baseURL: API_BASE, timeout: 12000 });api.interceptors.request.use((cfg) => {
   const token = localStorage.getItem('admin_token');
   if (token && cfg.headers) {
     cfg.headers['Authorization'] = `Bearer ${token}`;
